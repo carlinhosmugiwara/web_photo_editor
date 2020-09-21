@@ -1,0 +1,83 @@
+*, *::before, *::after{
+  box-sizing: border-box;
+}
+body{
+  margin: 0;
+}
+
+.container{
+  /* setting up the style of the container */
+  display: grid;
+  grid-template-columns: 1fr auto;
+  grid-template-rows: 1fr auto;
+  grid-template-areas:
+    "image sidebar"
+    "slider sidebar";
+
+  /* height and width */
+  height: 100vh;
+  width: 100vw;
+
+  background-color: silver;
+
+}
+
+.main-image{
+  grid-area: image;
+  background-image: url("https://eskipaper.com/images/beautiful-lake-wallpaper-1.jpg");
+  width: 100%; /* 100% instead of 100vw to not get in the way of the sidebar */
+  height: 100%;
+  background-position: top-center;
+  background-size: contain;
+  background-repeat: no-repeat;
+}
+.sidebar{
+  grid-area: sidebar;
+  background-color: hsl(0, 70%, 90% );
+  border-left: 1px solid hsl(0, 70%, 80% );
+  display: flex;
+  flex-direction: column;
+  align-items: strech;
+}
+
+.sidebar-item{
+  cursor: pointer;
+  border: none;
+  outline: none;
+  background-color: hsl(0, 70%,90%);
+  position: relative;
+  padding: 1rem;
+  transition: 130ms;
+}
+.sidebar-item:hover, .sidebar-item:focus{ /* specific rules to differ the items from the side bar itself */
+  background-color: hsl(0, 70%, 70%);
+}
+
+.sidebar-item.active{
+  background-color: hsl(0, 70%, 65%);
+}
+
+.sidebar-item::after{ /* creating a line to separate each item */
+  content: '';
+  position: absolute;
+  width: 75%;
+  left: 10%;
+  bottom: 0;
+  height: 1px;
+  background-color: hsl(0, 70%, 65%);
+}
+
+.sidebar-item:last-child:after{
+  display: none;
+}
+
+.slider-container{
+  grid-area: slider;
+  margin-top: 2rem;
+  padding: 2rem;
+}
+
+.slider{
+  width: 100%; /* adjusting the slider's width to not be small as it is in it's standard form */
+  cursor: pointer;
+}
